@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uma Surpresa Especial para Você</title>
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Fundo de partículas e cursor personalizado -->
+    <canvas id="particle-canvas"></canvas>
+    <div class="custom-cursor"></div>
+
+    <!-- Tela Inicial -->
+    <div id="start-screen" class="screen visible">
+        <div class="center-content">
+            <h1>Uma surpresa para o amor da minha vida</h1>
+            <button id="open-button">
+                <span class="heart-icon">❤️</span> Abrir
+            </button>
+        </div>
+    </div>
+
+    <!-- Tela de Carregamento -->
+    <div id="loading-screen" class="screen">
+        <div class="loading-content">
+            <p>Um lembrete do que sinto por você...</p>
+            <div class="progress-bar">
+                <div id="progress-bar-inner"></div>
+            </div>
+            <p id="loading-percentage">0%</p>
+        </div>
+    </div>
+
+    <!-- Conteúdo Principal -->
+    <main id="main-content">
+        <section class="title-section">
+            <div class="message-container">
+                <h2 id="surprise-message">Feliz Dia dos Namorados, Beba!</h2>
+            </div>
+        </section>
+
+        <!-- A estrutura da carta agora garante a centralização correta -->
+        <section class="letter-section">
+            <div class="letter-wrapper reveal-on-scroll">
+                <h3>Uma Carta Para Você...</h3>
+                <div class="letter-content">
+                    <p>
+                        Meu amor, se palavras pudessem descrever tudo o que sinto, eu escreveria um livro. Mas, por
+                        enquanto, quero apenas lembrar o começo de tudo. Lembro do dia em que te vi pela primeira vez e
+                        como
+                        meu coração acelerou.
+                    </p>
+                    <p>
+                        Cada momento ao seu lado se transformou em uma memória preciosa. Das nossas risadas mais bobas
+                        até
+                        os nossos sonhos compartilhados. Você trouxe cores novas para o meu mundo e me mostrou o que é o
+                        amor de verdade.
+                    </p>
+                    <p>
+                        Esta é apenas uma pequena forma de dizer o quanto você é importante para mim. Obrigado por ser
+                        minha
+                        companheira, minha melhor amiga e o grande amor da minha vida.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="gallery-section">
+            <h3 class="reveal-on-scroll">Nossas Memórias Mais Preciosas</h3>
+            <div class="gallery-container reveal-on-scroll">
+                <div class="panel active" style="background-image: url('1.jpeg');">
+                    <h3>Te amo</h3>
+                </div>
+                <div class="panel" style="background-image: url('2.jpeg');">
+                    <h3>Pra sempre</h3>
+                </div>
+                <div class="panel" style="background-image: url('3.jpeg');">
+                    <h3>Você melhora meus dias</h3>
+                </div>
+                <div class="panel" style="background-image: url('4.jpeg');">
+                    <h3>Minha nega</h3>
+                </div>
+                <div class="panel" style="background-image: url('5.jpeg');">
+                    <h3>Você, a razão do meu sorriso</h3>
+                </div>
+            </div>
+        </section>
+
+        <section class="closing-section reveal-on-scroll">
+            <p>Com todo o meu amor,</p>
+            <h2>Diego</h2>
+        </section>
+
+    </main>
+
+    <audio id="background-music" src="nossa-musica.mp3" loop></audio>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,391 @@
+/* style.css - VERSÃO FINAL E CORRIGIDA */
+
+/* --- VARIÁVEIS DE CORES E FONTES --- */
+:root {
+    --bg-color: #1a0f26;
+    --text-color: #f0e6ff;
+    --primary-color: #ff79c6;
+    --secondary-color: #bd93f9;
+    --font-heading: 'Dancing Script', cursive;
+    --font-body: 'Montserrat', sans-serif;
+}
+
+/* --- ESTILOS GERAIS E RESET --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    overflow: hidden;
+    cursor: none;
+}
+
+/* --- FUNDO E CURSOR --- */
+#particle-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+}
+
+.custom-cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--primary-color);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.1s ease-out;
+}
+
+/* --- TELAS DE TRANSIÇÃO (INICIAL & CARREGAMENTO) --- */
+.screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: var(--bg-color);
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1s ease-in-out;
+}
+
+.screen.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* CORREÇÃO 1: Centralização do conteúdo da tela inicial (botão) */
+.center-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding: 20px;
+}
+
+#start-screen h1 {
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    color: var(--primary-color);
+    text-shadow: 0 0 15px var(--primary-color);
+}
+
+#open-button {
+    font-size: 1.2rem;
+    background: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 15px 30px;
+    border-radius: 50px;
+    cursor: none;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#open-button:hover {
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+    box-shadow: 0 0 25px var(--primary-color);
+    transform: scale(1.05);
+}
+
+.heart-icon {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+/* Tela de Carregamento */
+.loading-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 80%;
+    max-width: 400px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    border: 1px solid var(--secondary-color);
+}
+
+#progress-bar-inner {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+    border-radius: 10px;
+    transition: width 0.1s linear;
+}
+
+/* --- CONTEÚDO PRINCIPAL --- */
+main#main-content {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1.5s ease-in-out, transform 1s ease-in-out;
+    z-index: 1;
+    background: linear-gradient(to bottom, rgba(26, 15, 38, 0.8), rgba(26, 15, 38, 0.95));
+}
+
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 100px 20px;
+    text-align: center;
+}
+
+/* CORREÇÃO 2: Seção do título com tamanho reduzido (sem 100vh) */
+.title-section {
+    padding-top: 20vh;
+    /* Espaçamento superior generoso */
+    padding-bottom: 15vh;
+    /* Espaçamento inferior para ligar com a carta */
+}
+
+#surprise-message {
+    font-family: var(--font-heading);
+    font-size: 4rem;
+    color: var(--primary-color);
+    text-shadow: 0 0 15px var(--primary-color);
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: .15em solid var(--primary-color);
+    animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+    max-width: 100%;
+}
+
+@keyframes typing {
+    from {
+        width: 0
+    }
+
+    to {
+        width: 100%
+    }
+}
+
+@keyframes blink-caret {
+
+    from,
+    to {
+        border-color: transparent
+    }
+
+    50% {
+        border-color: var(--primary-color);
+    }
+}
+
+/* --- Animação de Revelação --- */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+}
+
+.reveal-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* CORREÇÃO 3: Centralização da seção da carta */
+.letter-section {
+    padding-top: 0;
+    /* Remove padding extra para ficar mais perto do título */
+    flex-direction: column;
+}
+
+.letter-wrapper {
+    max-width: 700px;
+    width: 100%;
+}
+
+.letter-wrapper h3 {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    color: var(--secondary-color);
+    margin-bottom: 40px;
+}
+
+.letter-content p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    text-align: left;
+    /* Mantido à esquerda para melhor legibilidade */
+    margin-bottom: 20px;
+}
+
+/* Para centralizar o texto da carta, troque 'text-align: left' por 'text-align: center' */
+
+/* --- Seção da Galeria --- */
+.gallery-section {
+    flex-direction: column;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.gallery-section h3 {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    color: var(--secondary-color);
+    margin-bottom: 50px;
+}
+
+.gallery-container {
+    display: flex;
+    width: 90vw;
+    height: 70vh;
+}
+
+.panel {
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    border-radius: 50px;
+    color: #fff;
+    cursor: none;
+    flex: 0.5;
+    margin: 10px;
+    position: relative;
+    transition: flex 0.7s ease-in;
+}
+
+.panel h3 {
+    font-size: 1.5rem;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    margin: 0;
+    opacity: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 8px 15px;
+    border-radius: 20px;
+    transition: opacity 0.3s ease-in 0.4s;
+}
+
+.panel.active {
+    flex: 5;
+}
+
+.panel.active h3 {
+    opacity: 1;
+}
+
+/* --- Seção de Encerramento --- */
+.closing-section {
+    flex-direction: column;
+}
+
+.closing-section p {
+    font-size: 1.2rem;
+    font-style: italic;
+}
+
+.closing-section h2 {
+    font-family: var(--font-heading);
+    font-size: 4rem;
+    color: var(--primary-color);
+    margin-top: 10px;
+}
+
+/* --- DESIGN RESPONSIVO --- */
+@media (max-width: 768px) {
+    body {
+        cursor: auto;
+    }
+
+    .custom-cursor {
+        display: none;
+    }
+
+    #open-button,
+    .panel {
+        cursor: pointer;
+    }
+
+    section {
+        padding: 80px 20px;
+    }
+
+    #start-screen h1 {
+        font-size: 2.5rem;
+    }
+
+    #surprise-message {
+        font-size: 2.8rem;
+    }
+
+    .letter-wrapper h3,
+    .gallery-section h3 {
+        font-size: 2.5rem;
+    }
+
+    .closing-section h2 {
+        font-size: 3rem;
+    }
+
+    .gallery-container {
+        flex-direction: column;
+        height: 100vh;
+    }
+}
+
+@media (max-width: 480px) {
+    #start-screen h1 {
+        font-size: 2.2rem;
+    }
+
+    #surprise-message {
+        font-size: 2.4rem;
+        white-space: normal;
+        text-align: center;
+        border-right: none;
+        animation: none;
+    }
+}
+
+.letter-content p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    text-align: center;
+    /* <<< MUDANÇA AQUI: de 'left' para 'center' */
+    margin-bottom: 20px;
+}
